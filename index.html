@@ -3,56 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Hamza Mushtaq</title>
-    <!-- Add your custom CSS or link to external stylesheets here -->
+    <title>Internet Speed Test</title>
     <style>
-        /* Add your custom CSS styles here */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            color: #fff;
-            padding: 20px;
             text-align: center;
+            padding: 50px;
         }
-        section {
-            padding: 20px;
+        #result {
+            font-size: 2em;
+            margin-top: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
-        h1 {
-            margin-top: 0;
-        }
-        /* Add more custom styles as needed */
     </style>
 </head>
 <body>
+    <h1>Test Your Internet Speed</h1>
+    <button onclick="testSpeed()">Start Speed Test</button>
+    <div id="result"></div>
 
-<header>
-    <h1>Muhammad Hamza Mushtaq</h1>
-    <p>Android Custom ROM Developer & Mechatronics Engineer</p>
-</header>
+    <script>
+        async function testSpeed() {
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = 'Testing...';
 
-<section>
-    <div class="container">
-        <h2>About Me</h2>
-        <p>Welcome to my GitHub.io page! I'm Muhammad Hamza Mushtaq, an Android custom ROM developer and Mechatronics engineer passionate about creating innovative solutions.</p>
-        <!-- Add more sections such as Projects, Skills, Blog, Contact, etc. -->
-    </div>
-</section>
+            const image = new Image();
+            const imageSizeInBytes = 500000; // Example size of the image file in bytes
 
-<footer>
-    <div class="container">
-        <p>&copy; 2024 Muhammad Hamza Mushtaq | GitHub.io</p>
-    </div>
-</footer>
+            const startTime = new Date().getTime();
+            image.src = 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Original_Doge_meme.jpg?random=' + Math.random();
 
+            image.onload = function() {
+                const endTime = new Date().getTime();
+                const duration = (endTime - startTime) / 1000; // Time in seconds
+
+                const bitsLoaded = imageSizeInBytes * 8;
+                const speedMbps = (bitsLoaded / duration) / (1024 * 1024);
+
+                resultElement.textContent = `Your download speed is approximately ${speedMbps.toFixed(2)} Mbps`;
+            };
+
+            image.onerror = function() {
+                resultElement.textContent = 'Error loading test image. Please try again.';
+            };
+        }
+    </script>
 </body>
 </html>
