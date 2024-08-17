@@ -36,13 +36,13 @@
         }
 
         async function testPing() {
-            const pingUrl = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png";
+            const pingUrl = "https://api.github.com"; // Using GitHub API for ping test (CORS-friendly)
             const pingTimes = [];
 
             for (let i = 0; i < 5; i++) {
                 const start = performance.now();
                 try {
-                    await fetch(pingUrl + '?cache=' + Math.random(), { method: 'HEAD' });
+                    await fetch(pingUrl);
                     const end = performance.now();
                     pingTimes.push(end - start);
                 } catch (error) {
